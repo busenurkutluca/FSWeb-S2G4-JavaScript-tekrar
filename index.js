@@ -50,9 +50,13 @@ function KareninAlani(kenaruzunlugu) {
 	4. Hesaplanan çemberin çevresi döndürülecektir.
 */
 
-function CemberinCevresi(/* kodlar buraya */) {
+  function CemberinCevresi(yaricap) {
+    return 2 * pi * yaricap;
+  }
+  
+  console.log(CemberinCevresi(5));
   /* kodlar buraya */
-}
+
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -64,9 +68,11 @@ function CemberinCevresi(/* kodlar buraya */) {
 	4. Hesaplanan çemberin alanı döndürülecektir.
 */
 
-function CemberinAlani(/* kodlar buraya */) {
-  /* kodlar buraya */
+function CemberinAlani(yaricap, pi) {
+  return pi * Math.pow(yaricap, 2);
 }
+
+console.log(CemberinAlani(15, pi));
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -89,13 +95,65 @@ function CemberinAlani(/* kodlar buraya */) {
 
 /*  (oto test yok) sayilar dizisi içinde kaç adet sayı olduğunu konsola yazdırın */
 
-let ucetambolunenler,
-  enkucuk,
-  enbuyuk,
-  ucebolunenlerintoplami,
-  besyuzdenkucuksayilar,
-  siralisayilar,
-  tekraredensayilar;
+let enbuyuk = sayilar[0];
+let enkucuk = sayilar[0];
+
+for (let i = 1; i < sayilar.length; i++) {
+  if (sayilar[i] > enbuyuk) {
+    enbuyuk = sayilar[i];
+  }
+  if (sayilar[i] < enkucuk) {
+    enkucuk = sayilar[i];
+  }
+}
+
+console.log(`En büyük: ${enbuyuk}, En küçük: ${enkucuk}`);
+
+// GÖREV 3b
+let ucetambolunenler = [];
+sayilar.forEach(sayi => {
+  if (sayi % 3 === 0) {
+    ucetambolunenler.push(sayi);
+  }
+});
+
+console.log(ucetambolunenler);
+
+// GÖREV 3c
+let ucebolunenlerintoplami = ucetambolunenler.reduce((toplam, sayi) => toplam + sayi, 0);
+console.log(ucebolunenlerintoplami);
+
+// GÖREV 3d
+let besyuzdenkucuksayilar = sayilar.filter(sayi => sayi < 500);
+console.log(besyuzdenkucuksayilar);
+
+// GÖREV 3e
+let siralisayilar = besyuzdenkucuksayilar.slice().sort((a, b) => a - b);
+console.log(siralisayilar);
+
+// GÖREV 3f
+let tekraredensayilar = [];
+let sayiTekrar = {};
+
+sayilar.forEach(sayi => {
+  if (sayiTekrar[sayi]) {
+    sayiTekrar[sayi]++;
+  } else {
+    sayiTekrar[sayi] = 1;
+  }
+});
+
+for (let sayi in sayiTekrar) {
+  if (sayiTekrar[sayi] > 1) {
+    tekraredensayilar.push(`${sayi} sayısı ${sayiTekrar[sayi]} kere tekrar edilmiştir`);
+  }
+}
+
+console.log(tekraredensayilar);
+
+// Sayilar dizisindeki toplam sayı adedini yazdırma
+console.log(`sayilar dizisinde ${sayilar.length} adet sayı vardır.`);
+
 
 // 3a çözümü
 
@@ -123,11 +181,7 @@ let ucetambolunenler,
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 
-function sa() {
-  console.log("Kodlar çalışıyor");
-  return "as";
-}
-sa();
+
 module.exports = {
   sa,
   CemberinCevresi,
